@@ -1,5 +1,6 @@
 <?php
 
+use App\adm;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('formulario', function() {
+    return view('formulario');
+});
+
+Route::get('show', 'UsuarioController@show');
+Route::post('tratar', 'UsuarioController@tratar');
+
+Route::resource('usuarios', 'usuariosController');
+
+Route::get('banco', function() {
+    //$dados = DB::table('clientes')->get();
+    $dados = adm::get();
+    return $dados[0]->nome;
+});
+Route::resource('noticia', 'NoticiaController');
